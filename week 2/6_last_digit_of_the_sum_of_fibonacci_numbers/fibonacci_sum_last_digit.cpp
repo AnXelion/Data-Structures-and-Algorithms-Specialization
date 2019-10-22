@@ -42,9 +42,6 @@ std::vector<long long> get_pisano_sequence(long long m) {
 
 // Using the fact that ∑Fn = Fn+2 - 1.
 int fibonacci_sum_fast(long long n) {
-    if (n <= 1) 
-        return n;
-
     long long m = n + 2;
     std::vector<long long> pisano = get_pisano_sequence(10);
     int sum = (pisano[m % pisano.size()] > 0) ? (pisano[m % pisano.size()] - 1) : 9;   
