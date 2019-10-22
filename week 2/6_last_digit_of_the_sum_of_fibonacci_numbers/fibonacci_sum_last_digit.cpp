@@ -40,31 +40,14 @@ std::vector<long long> get_pisano_sequence(long long m) {
     return pisano;
 }
 
+// Using the fact that ∑Fn = Fn+2 - 1.
 int fibonacci_sum_fast(long long n) {
-    if (n <= 1)
+    if (n <= 1) 
         return n;
 
-    // Get the pisano sequnce of mod 10 and the sum of it
-    // The periodicity is 60 equal to the size of sequence
+    long long m = n + 2;
     std::vector<long long> pisano = get_pisano_sequence(10);
-    int pisano_total_sum = 0;
-    int pisano_periodicity = pisano.size();
-    for (int i = 0; i < pisano_periodicity; i++) {
-        pisano_total_sum += pisano[i];
-    }
-    
-    // Sum up all last digits
-    int sum = 0;
-    while (n > 0) {
-        if (n >= pisano_periodicity) {
-            sum = ((n / pisano_periodicity) * pisano_total_sum) % 10;
-            n %= pisano_periodicity;         
-        }
-        else {
-            sum = (sum + pisano[n]) % 10;
-            n--;
-        }
-    }
+    int sum = (pisano[m % pisano.size()] > 0) ? (pisano[m % pisano.size()] - 1) : 9;   
 
     return sum;
 }
