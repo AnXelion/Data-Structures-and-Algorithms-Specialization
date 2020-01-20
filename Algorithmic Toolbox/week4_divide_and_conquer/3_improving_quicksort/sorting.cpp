@@ -23,7 +23,7 @@ vector<int> partition3(vector<int> &a, int l, int r) {
   int pivot = a[l];
   int j = l, t = r;
 
-  for (int i = l; i <= t; i++) {
+  for (int i = l + 1; i <= t; i++) {
     if (a[i] < pivot) {
       swap(a[i], a[j]);
       j++;
